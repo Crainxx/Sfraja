@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Untuk Safira 💖</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #ffe4ec;
+      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
+    }
+
+    .slide, .start-screen {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0; left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+      transition: opacity 1s ease;
+      opacity: 0;
+      z-index: 0;
+    }
+
+    .slide.active, .start-screen.active {
+      opacity: 1;
+      z-index: 10;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #c2185b;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #444;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    img {
+      width: 80%;
+      max-width: 300px;
+      border-radius: 20px;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .start-screen {
+      background-color: #ffc5d0;
+      cursor: pointer;
+    }
+
+    .btn-message {
+      margin-top: 2rem;
+      background: #c2185b;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn-message:hover {
+      background: #a0154e;
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bgm" loop>
+    <source src="https://h.top4top.io/m_3494lvvrh0.m4a" type="audio/mpeg">
+  </audio>
+
+  <!-- Start Screen -->
+  <div class="start-screen active" id="startScreen">
+    <h1>Sentuh Layar Untuk Memulai</h1>
+    <p>Dan jangan lupa hidupkan suara ya 😊</p>
+  </div>
+
+  <!-- Slides -->
+  <div class="slide">
+    <h1>Untuk Neng Safiraa 👀</h1>
+    <p>Khusus halaman ini cuma buat Neng Safiraa, Hehehe</p>
+  </div>
+
+  <div class="slide">
+    <h1>Aku punya sesuatu 💬</h1>
+    <p>
+      Aku nggak pernah nyari seseorang yang sempurna. Aku nyari seseorang yang mau sama-sama belajar, tumbuh, dan jalanin semuanya bareng.<br><br>
+      Dan ternyata... itu kamu.<br>
+      Makasih ya, udah jadi seseorang yang selalu hadir dengan cara yang sederhana, tapi berarti banget buat aku.<br>
+      Dan terima kasih Neng Safiraa udah jadi gadis cantik aku hehehe... Tapi beneran cantik anjay ✨
+    </p>
+  </div>
+
+  <div class="slide">
+    <h1>Ini Kamu Cantikk Bangett!!! 📸</h1>
+    <img src="https://cdn.discordapp.com/attachments/1378580898823274528/1398934152631292045/IMG-20250727-WA0021.jpg?ex=68872a74&is=6885d8f4&hm=b19e633228d93f488346a5296ca9b10768874ffb0b02eac295e35a3846e768c5&" alt="Foto Kamu">
+    <p>Cantik banget anjayyy 🥺</p>
+  </div>
+  
+  <div class="slide">
+  <h1>Maaf ya, Safira 😖</h1>
+  <p>
+    Mungkin kadang aku kurang peka, kurang ngerti perasaanmu, atau terlalu sibuk sama pikiranku sendiri.<br><br>
+    Tapi bukan berarti aku nggak peduli.<br>
+    Justru aku ingin terus belajar jadi orang yang bisa kamu andalkan, yang bisa bikin kamu merasa aman dan dihargai.<br><br>
+    Maaf kalau selama ini belum selalu bisa jadi yang terbaik, tapi aku benar-benar sayang sama kamu.
+  </p>
+</div>
+
+  <div class="slide">
+    <h1>Love Youu Safiraaa ✨</h1>
+    <p>Thank you Safiraaa, you are the best part of my life 😸</p>
+    <button class="btn-message" onclick="window.open('https://wa.me/6283871917687','_blank')">Kirim Pesan ke Aku 💌</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const startScreen = document.getElementById('startScreen');
+    const bgm = document.getElementById("bgm");
+
+    let current = 0;
+    const durations = [4000, 13000, 5000, 15000]; // ms
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) slide.classList.add('active');
+      });
+
+      // jangan lanjut kalau sudah di akhir
+      if (index < slides.length - 1) {
+        setTimeout(() => {
+          current++;
+          showSlide(current);
+        }, durations[index]);
+      }
+    }
+
+    // Start setelah klik
+    startScreen.addEventListener("click", () => {
+      startScreen.classList.remove("active");
+      bgm.play().catch(e => console.log("Autoplay ditolak:", e));
+      showSlide(current);
+    });
+  </script>
+
+</body>
+</html>
